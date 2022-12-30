@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\Question::factory(1000)->create()->each(function ($question) {
             $type = $question->getType();
-            if ($type == 'checkbox'){
+            if ($type == 'radio'){
                 (\App\Models\Answer::factory()->count(1)->withParams($question->id, 1)->create());
                 (\App\Models\Answer::factory()->count(1)->withParams($question->id, 0)->create());
                 (\App\Models\Answer::factory()->count(1)->withParams($question->id, 0)->create());
-            } else if ($type == 'radio') {
+            } else if ($type == 'checkbox') {
                 (\App\Models\Answer::factory()->count(1)->withParams($question->id, 0.5)->create());
                 (\App\Models\Answer::factory()->count(1)->withParams($question->id, 0.5)->create());
                 (\App\Models\Answer::factory()->count(1)->withParams($question->id, 0)->create());   
