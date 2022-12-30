@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
                 (\App\Models\Answer::factory()->count(1)->withParams($question->id, 1)->create());
                 (\App\Models\Answer::factory()->count(1)->withParams($question->id, 0)->create());
                 (\App\Models\Answer::factory()->count(1)->withParams($question->id, 0)->create());
-            } else if ($type == 'checkbox') {
+            } else if ($type == 'radio') {
                 (\App\Models\Answer::factory()->count(1)->withParams($question->id, 0.5)->create());
                 (\App\Models\Answer::factory()->count(1)->withParams($question->id, 0.5)->create());
                 (\App\Models\Answer::factory()->count(1)->withParams($question->id, 0)->create());   

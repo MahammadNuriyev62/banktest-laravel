@@ -6,13 +6,14 @@
                     <tr>
                         <th class="border border-slate-700 p-1 w-32">Question</th>
                         <th class="border border-slate-700 p-1">Body</th>
+                        <th class="border border-slate-700 p-1">Type</th>
                         <th class="border border-slate-700 p-1 w-32">Edit</th>
                         <th class="border border-slate-700 p-1 w-32">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($questions as $question)
-                        <x-question-card :question="$question" :index="$loop->index" />
+                        <x-question-card :question="$question" :index="$loop->index"/>
                     @endforeach
                 </tbody>
             </table>

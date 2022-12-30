@@ -1,9 +1,10 @@
-@props(['question', 'index'])
+@props(['question', 'index', 'type'])
 
 <div class="flex">
     <tr>
         <th class="border border-slate-700 p-1">{{ $index + 1 }}</th>
         <th class="border border-slate-700 p-1">{{ $question->body }}</th>
+        <th class="border border-slate-700 p-1">{{ $question->type }}</th>
         <th class="border border-slate-700 p-1">
             <form method="GET" action="/questions/{{ $question->id }}">
                 @csrf
