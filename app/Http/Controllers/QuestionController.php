@@ -86,15 +86,16 @@ class QuestionController extends Controller
     }
     
     // Show Edit Form
-    public function edit(Question $question) {
-        return view('questions.question', [
-            'id' => $question->id,
-            'mode' => 'edit',
-            'type' => $question->type,
-            'types' => Question::QUESTION_TYPES,
-            'body' => $question->body,
-            'answers' => $question->answers,
-        ]);
+    public function edit($id) {
+        return view('welcome');
+        // return view('questions.question', [
+        //     'id' => $question->id,
+        //     'mode' => 'edit',
+        //     'type' => $question->type,
+        //     'types' => Question::QUESTION_TYPES,
+        //     'body' => $question->body,
+        //     'answers' => $question->answers,
+        // ]);
     }
 
     // Update Question Data

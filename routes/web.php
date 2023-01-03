@@ -20,9 +20,6 @@ Route::get('/', function (){
     return redirect('/questions');
 });
 
-// Show Edit Form
-Route::get('/questions/{question}/edit', [QuestionController::class, 'edit']);
-
 // All Questions
 Route::get('/questions', [QuestionController::class, 'index']);
 
@@ -31,6 +28,9 @@ Route::get('/questions/create', [QuestionController::class, 'create']);
 
 // Store Question Data
 Route::post('/questions', [QuestionController::class, 'store']);
+
+// Show Edit Form
+Route::get('/questions/{question}/edit', [QuestionController::class, 'edit']);
 
 // Update Question
 Route::put('/questions/{question}', [QuestionController::class, 'update']);
