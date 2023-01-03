@@ -8,6 +8,7 @@
                         <th class="border border-slate-700 p-1 w-32">Question</th>
                         <th class="border border-slate-700 p-1">Body</th>
                         <th class="border border-slate-700 p-1">Type</th>
+                        <th class="border border-slate-700 p-1 w-32">View</th>
                         <th class="border border-slate-700 p-1 w-32">Edit</th>
                         <th class="border border-slate-700 p-1 w-32">Delete</th>
                     </tr>

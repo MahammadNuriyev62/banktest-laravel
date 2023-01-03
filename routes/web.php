@@ -30,13 +30,16 @@ Route::get('/questions/create', [QuestionController::class, 'create']);
 Route::post('/questions', [QuestionController::class, 'store']);
 
 // Show Edit Form
-Route::get('/questions/{question}', [QuestionController::class, 'edit']);
+Route::get('/questions/{question}/edit', [QuestionController::class, 'edit']);
 
 // Update Question
 Route::put('/questions/{question}', [QuestionController::class, 'update']);
 
 // Delete Question
 Route::delete('/questions/{question}', [QuestionController::class, 'destroy']);
+
+// Single Question
+Route::get('/questions/{question}', [QuestionController::class, 'show']);
 
 // About us
 Route::get('/about', [GeneralController::class, 'about']);

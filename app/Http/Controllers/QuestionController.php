@@ -18,6 +18,18 @@ class QuestionController extends Controller
         ]);
     }
 
+    //Show single listing
+    public function show(Question $question) {
+        return view('questions.question', [
+            'id' => $question->id,
+            'mode' => 'show',
+            'type' => $question->type,
+            'types' => Question::QUESTION_TYPES,
+            'body' => $question->body,
+            'answers' => $question->answers,
+        ]);
+    }
+
     // Show Create Form
     public function create(Request $request)
     {

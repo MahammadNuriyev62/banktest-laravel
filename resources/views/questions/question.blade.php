@@ -16,7 +16,9 @@
 <x-layout>
     <x-form-layout>
         <form method="POST" action={{ $mode == 'edit' ? '/questions/' . $id : '/questions' }} enctype="multipart/form-data">
-            @csrf
+            @if ($mode != 'show')
+                @csrf
+            @endif
             @if ($mode == 'edit')
                 @method('PUT')
             @endif
@@ -89,53 +91,57 @@
                 @endif
             </div>
             <div class="mb-6">
-                <button class="bg-green-600 text-white rounded py-2 px-4 hover:bg-green-800">
-                    {{ $mode = 'edit' ? 'Update Question' : 'Create Question' }}
-                </button>
-                <a href="/questions" class="text-black ml-4">Back</a>
+                @if ($mode != 'show')
+                    <button class="bg-green-600 text-white rounded py-2 px-4 hover:bg-green-800 mr-4">
+                        {{ $mode == 'edit' ? 'Update Question' : 'Create Question' }}
+                    </button>
+                @endif
+                <a href="/questions" class="text-black">Back</a>
             </div>
         </form>
     </x-form-layout>
 </x-layout>
-<script defer>
-    const getAnswerButtonSelector = (index) => `#answers_container .answer:eq(${index}) .answer-button`;
-    const getAnswerInputResultSelector = (index) => `#answers_container .answer:eq(${index}) .answer-result`;
-    const checkIfAnswerIsCorrect = (index) => $(getAnswerInputResultSelector(index)).attr('value') !== '0';
-    const paintButtonToGreen = (index) => {
-        $(getAnswerButtonSelector(index)).addClass('bg-green-700').addClass('border-green-700').html('Correct');
-    }
-    const unpaintButtonFromGreen = (index) => {
-        $(getAnswerButtonSelector(index)).removeClass('bg-green-700').removeClass('border-green-700').html('Incorrect');
-    }
-    $(document).ready(function() {
-        const type = $('#type-input').val();
-        const bindButtonLister = function(index) {
-            $(getAnswerButtonSelector(index)).on('click', function() {
-                const isCorrect = checkIfAnswerIsCorrect(index);
-                const correctAnswerCount = $("#answers_container .answer .answer-result").map((i, e) => $(e).attr('value')).toArray()
-                    .filter((e) => e === '1').length
-                if (type === 'radio' && !isCorrect && correctAnswerCount > 0) {
-                    return alert('You can only select one answer for radio type');
-                }
-                $(getAnswerInputResultSelector(index)).attr('value', isCorrect ? '0' : '1');
-                isCorrect ? unpaintButtonFromGreen(index) : paintButtonToGreen(index);
+@if ($mode != 'show')
+    <script defer>
+        const getAnswerButtonSelector = (index) => `#answers_container .answer:eq(${index}) .answer-button`;
+        const getAnswerInputResultSelector = (index) => `#answers_container .answer:eq(${index}) .answer-result`;
+        const checkIfAnswerIsCorrect = (index) => $(getAnswerInputResultSelector(index)).attr('value') !== '0';
+        const paintButtonToGreen = (index) => {
+            $(getAnswerButtonSelector(index)).addClass('bg-green-700').addClass('border-green-700').html('Correct');
+        }
+        const unpaintButtonFromGreen = (index) => {
+            $(getAnswerButtonSelector(index)).removeClass('bg-green-700').removeClass('border-green-700').html('Incorrect');
+        }
+        $(document).ready(function() {
+            const type = $('#type-input').val();
+            const bindButtonLister = function(index) {
+                $(getAnswerButtonSelector(index)).on('click', function() {
+                    const isCorrect = checkIfAnswerIsCorrect(index);
+                    const correctAnswerCount = $("#answers_container .answer .answer-result").map((i, e) => $(e).attr('value')).toArray()
+                        .filter((e) => e === '1').length
+                    if (type === 'radio' && !isCorrect && correctAnswerCount > 0) {
+                        return alert('You can only select one answer for radio type');
+                    }
+                    $(getAnswerInputResultSelector(index)).attr('value', isCorrect ? '0' : '1');
+                    isCorrect ? unpaintButtonFromGreen(index) : paintButtonToGreen(index);
+                })
+            };
+            $('#add-answer').on('click', function() {
+                const index = $('#answers_container').children().length;
+                $('#answers_container').append(
+                    `<x-answer index="${index}" placeholder="Option ${index + 1}..." body="" result="0"/>`
+                );
+                bindButtonLister(index);
             })
-        };
-        $('#add-answer').on('click', function() {
-            const index = $('#answers_container').children().length;
-            $('#answers_container').append(
-                `<x-answer index="${index}" placeholder="Option ${index + 1}..." body="" result="0"/>`
-            );
-            bindButtonLister(index);
-        })
-        $('#type-input').on('change', function() {
-            $('form').attr("method", "GET").attr("action", "/questions/create").submit();
+            $('#type-input').on('change', function() {
+                $('form').attr("method", "GET").attr("action", "/questions/create").submit();
+            });
+            $('#answers_container .answer').each(function(index) {
+                bindButtonLister(index);
+                if (checkIfAnswerIsCorrect(index)) {
+                    paintButtonToGreen(index);
+                }
+            });
         });
-        $('#answers_container .answer').each(function(index) {
-            bindButtonLister(index);
-            if (checkIfAnswerIsCorrect(index)) {
-                paintButtonToGreen(index);
-            }
-        });
-    });
-</script>
+    </script>
+@endif

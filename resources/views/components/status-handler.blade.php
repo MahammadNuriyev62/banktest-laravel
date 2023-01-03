@@ -1,6 +1,8 @@
+@props(['message', 'status'])
+
 @php
-$message = session('message') ?? $message ?? null;
-$status = session('status') ?? $status ?? 'error';
+    $message = session('message') ?? ($message ?? null);
+    $status = session('status') ?? ($status ?? 'error');
 @endphp
 
 @if ($message)
