@@ -16,11 +16,7 @@
             </form>
         </th>
         <th class="border border-slate-700 p-1">
-            <form method="POST" action="/questions/{{ $question->id }}">
-                @csrf
-                @method('DELETE')
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold w-full h-full" type="submit">Delete</button>
-            </form>
+            <button @click="modal=true; action='/questions/{{$question->id}}'" class="bg-red-500 hover:bg-red-700 text-white font-bold w-full h-full" type="submit">Delete</button>
         </th>
     </tr>
 </div>
