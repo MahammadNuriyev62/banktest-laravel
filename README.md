@@ -27,7 +27,7 @@ Answer model of `answers` table has the following fields:
 - `id`
 - `question_id` foreign key to `questions` table
 - `body`
-- `result` is any integer number specifying the amount of points user gets for answering a question correctly. 0 if the answer is wrong.
+- `result` is any integer number specifying the amount of points user gets for this answer. 0 if the answer is wrong.
 - `timestamps`
 
 With the above structure any kind of `question` can be created. I will pay you if you can find a question that can't be created with the above structure.
