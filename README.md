@@ -1,5 +1,5 @@
 # Project Overview
-This is `Banktest`, full stack web application for managing bank of questions, supporting multiple choice questions, true/false questions, and short answer questions. It is built with 
+This is `Banktest`, full stack web application for managing bank of questions, supporting multiple choice questions, true/false questions, short and long answer questions. It is built with 
 - `Laravel` 
 - `Blade`
 - `Tailwind`
