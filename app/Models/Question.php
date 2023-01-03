@@ -18,6 +18,12 @@ class Question extends Model
         'text', 'textarea', 'checkbox', 'radio'
     ];
 
+    public function scopeFilter($query, array $filters) {
+        if($filters['search'] ?? false) {
+            $query->where('body', 'like', '%' . request('search') . '%');
+        }
+    }
+
     public function getType(){
         return $this->type;
     }
