@@ -1,3 +1,42 @@
+# Project Overview
+This is `Banktest`, full stack web application for managing bank of questions, supporting multiple choice questions, true/false questions, and short answer questions. It is built with 
+- `Laravel` 
+- `Blade`
+- `Tailwind`
+- `JQuery`
+- `AlpineJS`
+  
+There are two main parts of the application, a part for viewing questions and a part for managing questions. 
+You can do with questions the following:
+- `view`
+- `edit`
+- `create`
+- `delete`
+- `search`
+  
+It uses `MySQL` as database with a simplest structure possible. (you can find everything [here](database/migrations/2022_12_28_174409_create_questions_table.php))\
+Question model of `questions` table has the following fields:
+- `id`
+- `type` may be `[checkbox, radio, text, textarea]`. This are the names decided by app creator aka me. It can be mapped to any other names if someone don't like mines =).
+- `body`
+- `timestamps`
+  
+Answer model of `answers` table has the following fields:
+- `id`
+- `question_id` foreign key to `questions` table
+- `body`
+- `result` is any integer number specifying the amount of points user gets for answering a question correctly. 0 if the answer is wrong.
+- `timestamps`
+
+With the above structure any kind of `question` can be created. I will pay you if you can find a question that can't be created with the above structure. 
+
+THAT'S IT!, you can find the default `Laravel` `README.md` below.
+
+
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
